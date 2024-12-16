@@ -47,12 +47,12 @@ class AddStudent:
         self.reg_entry = []
 
         for i in range(len(self.reg_lbl_txt)):
-            Label(reg_frame, text=self.reg_lbl_txt[i], font=("Courier", 16),bg="#0f0f0f", fg="#00ee00", anchor="center", width=14).grid(row=i+2, column=0)
-            self.reg_entry.append(Entry(reg_frame, width=40, font=("Courier", 16), bg="#00ee00", fg="#0f0f0f", insertbackground="#0f0f0f"))
+            Label(reg_frame, text=self.reg_lbl_txt[i], font=("Courier", 16),bg="#0f0f0f", fg="#00ee00", anchor="w", width=14).grid(row=i+2, column=0)
+            self.reg_entry.append(Entry(reg_frame, width=40, font=("Courier", 16), bg="#00ee00", fg="#0f0f0f", insertbackground="#0f0f0f", relief="flat"))
             self.reg_entry[i].grid(row=i+2, column=1)
 
         reg_btn = Button(reg_frame, width=25, text="Register Student", font=("Courier", 14), bg="#002f00", fg="#00ee00", relief="flat", command=self.check_entries)
-        reg_btn.grid(columnspan=4)
+        reg_btn.grid(row=8, columnspan=4)
 
     def reset_txts(self):
         for i in range(len(self.reg_entry)):

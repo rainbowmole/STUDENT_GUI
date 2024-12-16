@@ -61,6 +61,10 @@ def open_frame(frame_open, close):
     for frame in close:
         frame.place_forget()
         other_id.delete(0, END)
+
+    if frame_open == show_all_frame:
+        refresh_scroll_content() 
+
     frame_open.place(relx=0.3, rely=0.5, anchor="w")
 
 def close_frame():
@@ -72,6 +76,16 @@ def close_frame():
 
 def update_scroll_region(event):
     page.configure(scrollregion=page.bbox("all"))
+
+def refresh_scroll_content():
+    for widget in scroll_frame.winfo_children():
+        widget.destroy()
+
+    all_student = str(search.printAllStudentInfo())
+    Label(scroll_frame, text=all_student, font=("Courier", 14), bg="#0f0f0f", fg="#00ee00", justify="left", wraplength=1200).grid(row=1, column=0)
+
+    scroll_frame.update_idletasks()
+    page.config(scrollregion=page.bbox("all"))
 
 def view_info():
     if login_id:
@@ -183,7 +197,6 @@ scroll_frame.bind("<Configure>", update_scroll_region)
 page.create_window((0, 0), window=scroll_frame, anchor="nw")
 page.configure(yscrollcommand=scrollbar.set)
 
-Label(scroll_frame, text="All Students", font=("Courier", 20), bg="#00ee00", anchor="center").grid(row=1, column=0, pady=20)
 all_student = str(search.printAllStudentInfo())
 Label(scroll_frame, text=all_student, font=("Courier", 14), bg="#0f0f0f", fg="#00ee00", justify="left", wraplength=1200).grid(row=1, column=0)
 Button(show_all_frame, text="[< Go back]", font=("Courier", 12), fg="#00ee00", bg="#0f0f0f", relief="flat", command=close_frame).grid(row=1, column=0, pady=10)
