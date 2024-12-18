@@ -14,9 +14,6 @@ class AddStudent:
          with open(self.filename, "r") as file:
             for line in file:
                 student_data = line.strip().split(', ')
-                #print(student_data)
-                name, age, id, email, phone = student_data
-                student = self.constructor(name, age, id, email, phone)
                 self.students_id.append(student_data[2])
  
 
@@ -83,7 +80,7 @@ class AddStudent:
                 errors.append(f"You forgot to add the {self.reg_lbl_txt[i]}\n")
         
         studentId = self.reg_entry[2].get()
-        if self.reg_entry[2].get() in self.students_id:
+        if studentId in self.students_id:
             errors.append(f"The ID: {studentId} is already taken")
 
         if not errors:
