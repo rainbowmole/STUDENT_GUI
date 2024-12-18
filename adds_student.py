@@ -3,9 +3,22 @@ from student import StudentInfo
 import tkinter.messagebox
 
 class AddStudent:
-    def __init__(self, student_data, filename="student_data.txt"):
+    def __init__(self, student_data, constructor, filename="student_data.txt"):
         self.student_data = student_data
         self.filename = filename
+        self.constructor = constructor
+        self.students_id = []
+        self.fetch_all_students()
+
+    def fetch_all_students(self) -> list[object]:
+         with open(self.filename, "r") as file:
+            for line in file:
+                student_data = line.strip().split(', ')
+                #print(student_data)
+                name, age, id, email, phone = student_data
+                student = self.constructor(name, age, id, email, phone)
+                self.students_id.append(student_data[2])
+ 
 
     def store_in_file(self, student):
         with open(self.filename, "a+") as file:
@@ -68,6 +81,10 @@ class AddStudent:
         for i in range(len(self.reg_entry)):
             if self.reg_entry[i].get() == "":
                 errors.append(f"You forgot to add the {self.reg_lbl_txt[i]}\n")
+        
+        studentId = self.reg_entry[2].get()
+        if self.reg_entry[2].get() in self.students_id:
+            errors.append(f"The ID: {studentId} is already taken")
 
         if not errors:
             self.add_student(self.reg_entry[0].get(), 

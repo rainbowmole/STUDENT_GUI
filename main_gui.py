@@ -14,7 +14,10 @@ if not os.path.exists(filename): #this is just to create a file if there's none 
 
 stu = StudentInfo()
 studAcc = openAcc("student_data.txt")
-addstud = AddStudent(stu)
+addstud = AddStudent(
+    stu, 
+    constructor=StudentInfo
+)
 search = SearchStud("student_data.txt")
 
 #undo the comment if it's running on a new pc| addstud.add_student("Admin Camacho", "20", "2023-2-02449", "nat@gmail.com", "09560252200") 
