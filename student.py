@@ -1,5 +1,5 @@
 class StudentInfo:
-    def __init__(self):
+    def __init__(self, name="", age=0, idnum="", email="", phone=""):
         self.name = ""
         self.age = 0
         self.idnum = ""
