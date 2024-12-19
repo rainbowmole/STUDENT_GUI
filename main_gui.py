@@ -8,7 +8,7 @@ from open_studAcc import openAcc
 from student_search import SearchStud
 
 filename = "student_data.txt" 
-if not os.path.exists(filename): #this is just to create a file if there's none existing
+if not os.path.exists(filename): #this is just to create a file if there's none existiSng
     with open(filename, "w") as file:
         pass 
 
